@@ -55,10 +55,13 @@ const recalculateSchedule = () => {
       updated[i].endDate = format(addDays(start, updated[i].duration), 'yyyy-MM-dd');
     } else {
       const prevEnd = new Date(updated[i - 1].endDate);
-      const start = prevEnd;
+      const start = addDays(prevEnd, 1); // start 1 day after previous task ends
       updated[i].startDate = format(start, 'yyyy-MM-dd');
       updated[i].endDate = format(addDays(start, updated[i].duration), 'yyyy-MM-dd');
     }
+  }
+  setProjects({ ...projects, [projectId]: updated });
+};
   }
   setProjects({ ...projects, [projectId]: updated });
 };
