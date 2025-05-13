@@ -47,7 +47,22 @@ export default function SchedulerApp() {
     }
     setProjects({ ...projects, [projectId]: updated });
   };
-
+const recalculateSchedule = () => {
+  const updated = [...projects[projectId]];
+  for (let i = 0; i < updated.length; i++) {
+    if (i === 0) {
+      const start = new Date(updated[i].startDate);
+      updated[i].endDate = format(addDays(start, updated[i].duration), 'yyyy-MM-dd');
+    } else {
+      const prevEnd = new Date(updated[i - 1].endDate);
+      const start = prevEnd;
+      updated[i].startDate = format(start, 'yyyy-MM-dd');
+      updated[i].endDate = format(addDays(start, updated[i].duration), 'yyyy-MM-dd');
+    }
+  }
+  setProjects({ ...projects, [projectId]: updated });
+};
+  
   return (
     <div>
       <select onChange={e => setProjectId(e.target.value)} value={projectId}>
