@@ -72,6 +72,12 @@ const recalculateSchedule = () => {
         ))}
       </select>
 
+  {projectId !== "0" && (
+  <button onClick={recalculateSchedule} style={{ marginLeft: '1rem' }}>
+    Recalculate Schedule
+  </button>
+)}
+
       {projectId === "0" ? (
         <div>
           <h2>Master Calendar</h2>
