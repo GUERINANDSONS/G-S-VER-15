@@ -62,6 +62,7 @@ const recalculateSchedule = () => {
   }
   setProjects({ ...projects, [projectId]: updated });
 };
+}
   }
   setProjects({ ...projects, [projectId]: updated });
 };
